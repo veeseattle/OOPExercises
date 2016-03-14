@@ -92,6 +92,7 @@ namespace OOP
                 {
                     Console.WriteLine("heronSqrt: {0}, systemSqrt: {1}", heronSqrt, systemSqrt);
                     Console.ReadLine();
+                    throw new SystemException();
                 }
             }
             Console.WriteLine("exited without an error");
