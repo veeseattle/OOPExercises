@@ -11,8 +11,8 @@ namespace OOP
     /// </summary>
     class Heron
     {
-        public double errorLimit;
-        public double value;
+        private double errorLimit;
+        private double value;
 
         /// <summary>
         /// Heron constructor that takes error limit and value to compute in double. 
@@ -31,6 +31,17 @@ namespace OOP
             }
         }
 
+        public double Value
+        {
+            get { return this.value; }
+            set { this.value = value; }
+        }
+
+        public double ErrorLimit
+        {
+            get { return this.errorLimit; }
+            set { this.errorLimit = value; }
+        }
         /// <summary>
         /// Computes the square root of a double by taking the value of the number divided by 2 as a guess, 
         /// then takes the squared value of the guessed number and compares it against the original number.
@@ -55,20 +66,14 @@ namespace OOP
 
     class SquareRootTest
     {
-        public Heron heron;
-        
-        public SquareRootTest(Heron heronToCompute)
-        {
-            this.heron = heronToCompute;
-        }
-
+   
         /// <summary>
         /// Computes squared root of a double by running the method Math.Sqrt()
         /// </summary>
         /// <returns></returns>
-        public double ComputeSquareRootToo()
+        public static double ComputeSquareRootToo(Heron heron)
         {
-            double guessedNumber = Math.Sqrt(this.heron.value);
+            double guessedNumber = Math.Sqrt(heron.Value);
             return guessedNumber;
         }
     }
@@ -85,10 +90,9 @@ namespace OOP
                 randomNumber = randGenerator.Next(0, 100000);
                 Heron newHeron = new Heron(0.0001, randomNumber);
                 double heronSqrt = newHeron.ComputeSquareRoot();
-                SquareRootTest sqrtTest = new SquareRootTest(newHeron);
-                double systemSqrt = sqrtTest.ComputeSquareRootToo();
+                double systemSqrt = SquareRootTest.ComputeSquareRootToo(newHeron);
 
-                if (Math.Abs(heronSqrt - systemSqrt) > newHeron.errorLimit)
+                if (Math.Abs(heronSqrt - systemSqrt) > newHeron.ErrorLimit)
                 {
                     Console.WriteLine("heronSqrt: {0}, systemSqrt: {1}", heronSqrt, systemSqrt);
                     Console.ReadLine();
