@@ -20,12 +20,24 @@ namespace UnitTest
         [TestMethod]
         public void TestForValuesNotInCipher()
         {
-            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string alphabet = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var test = new CaesarsCipher.CaesarsCipher(alphabet, 3);
 
             try { test.Encode("HELLO LEO"); }
             catch (Exception e)
             { Console.WriteLine("Exception: one or more test values are not in the cipher string. More info: {0}", e.Message); }
+        }
+
+        [TestMethod]
+        public void TestByEncodingAndDecoding()
+        {
+            string alphabet = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var test = new CaesarsCipher.CaesarsCipher(alphabet, 3);
+
+            var originalString = "HELLO LEO";
+            string encoded = test.Encode(originalString);
+            string decoded = test.Decode(encoded);
+            Assert.AreEqual(originalString, decoded);
         }
 
     }
