@@ -29,6 +29,7 @@ namespace CaesarsCipher
                 {
                     Console.WriteLine("One or more letters in your input string are not in the cipher");
                     Console.ReadLine();
+                    break;
                 }
                 outputText += alphabet[(alphabet.IndexOf(charArray[i]) + offset) % alphabet.Length];
             }
@@ -52,7 +53,7 @@ namespace CaesarsCipher
         {
             static void Main(string[] args)
             {
-                var caesar = new CaesarsCipher(" ABCDEFGHIJKLMNOPQRSTUVWXYZ", 3);
+                var caesar = new CaesarsCipher("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 3);
 
                 var output = caesar.Encode("HELLO LEO");
                 var decodedOutput = caesar.Decode(output);

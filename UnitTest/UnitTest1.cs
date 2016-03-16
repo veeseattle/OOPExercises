@@ -24,8 +24,8 @@ namespace UnitTest
             var test = new CaesarsCipher.CaesarsCipher(alphabet, 3);
 
             try { test.Encode("HELLO LEO"); }
-            catch (ArgumentOutOfRangeException e)
-            { };
+            catch (Exception e)
+            { Console.WriteLine("Exception: one or more test values are not in the cipher string. More info: {0}", e.Message); }
         }
 
     }
