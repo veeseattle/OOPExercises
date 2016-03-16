@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CaesarsCipher
 {
-    class CaesarsCipher
+    public class CaesarsCipher
     {
         private string alphabet;
         private int offset;
@@ -24,12 +24,18 @@ namespace CaesarsCipher
 
             for (int i = 0; i < charArray.Length; i++)
             {
+                var index = alphabet.IndexOf(charArray[i]);
+                if (index < 0)
+                {
+                    Console.WriteLine("One or more letters in your input string are not in the cipher");
+                    Console.ReadLine();
+                }
                 outputText += alphabet[(alphabet.IndexOf(charArray[i]) + offset) % alphabet.Length];
             }
 
             return outputText;
         }
-
+        
         public string Decode(string inputText)
         {
             var outputText = "";
